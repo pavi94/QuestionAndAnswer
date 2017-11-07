@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row">
+		<div class="media-left">
+			<a href="#">
+				<img class="media-object" src="<%= @question.gravatar %>">
+			</a>
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading"><%= @question.email%> asked:</h4>
+			<%= time_ago_in_words @question.created_at %> ago
+			<div>
+				<%=@question.body%>
+			</div>
+		</div>
+		<div>
+			<a class="btn btn-success btn-xs" data-toggle="modal" data-target="#answer-modal">Submit a Answer</a>
+		</div>
+		<%= render 'home/answermodal' %>
+	</div>
+	<% if @answers.empty? %>
+		<div class="alert alert-info"> Please be the first one to post an Answer!!</div>
+	<%end%>
+	<div class="container">
+		<% @answers.each do |a| %>
+		<div class="row">
+			<div class="media-left">
+				<a href="#">
+					<img class="media-object" src="<%= a.gravatar %>">
+				</a>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading"><%= a.email%> asked:</h4>
+				<%= time_ago_in_words a.created_at %> ago
+				<div>
+					<%=a.body%>
+				</div>
+			</div>
+			<% end %>
+
+		</div>
